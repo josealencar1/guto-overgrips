@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guto Overgrips - Overgrips Premium para Beach Tennis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: white;
+            scroll-behavior: smooth;
+        }
+        
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3B82F6;
+            text-decoration: none;
+            background: linear-gradient(45deg, #3B82F6, #10B981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: #4B5563;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #3B82F6;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #3B82F6, #10B981);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 1rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e5e7eb' fill-opacity='0.1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 1440px 320px;
+            animation: wave 15s linear infinite;
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #3B82F6, #10B981, #F59E0B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #3B82F6, #10B981);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #3B82F6;
+            border: 2px solid #3B82F6;
+        }
+        
+        .btn-secondary:hover {
+            background: #3B82F6;
+            color: white;
+        }
+        
+        .btn-white {
+            background: white;
+            color: #3B82F6;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-white:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 5rem 1rem;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3B82F6;
+            margin: 1rem 0;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 1rem;
+            position: relative;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e5e7eb' fill-opacity='0.1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 1440px 320px;
+            animation: wave 15s linear infinite;
+            opacity: 0.1;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-box {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 4rem 1rem;
+            background: linear-gradient(45deg, #3B82F6, #10B981);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        footer {
+            background: #111827;
+            color: #f3f4f6;
+            padding: 4rem 1rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #3B82F6, #10B981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .footer-description {
+            color: #9CA3AF;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1F2937;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #3B82F6;
+            transform: translateY(-3px);
+        }
+        
+        .footer-heading {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-link {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #3B82F6;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #9CA3AF;
+        }
+        
+        .copyright {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #1F2937;
+            text-align: center;
+            color: #9CA3AF;
+            font-size: 0.875rem;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+        
+        .whatsapp-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-info {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            display: none;
+        }
+        
+        .whatsapp-info h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+        
+        .whatsapp-info p {
+            color: #6B7280;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+        
+        .whatsapp-link {
+            display: block;
+            background: #25D366;
+            color: white;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .whatsapp-link:hover {
+            background: #128C7E;
+        }
+        
+        /* Animations */
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1440px; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: #4B5563;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="#" class="logo">Guto Overgrips</a>
+        <div class="nav-links">
+            <a href="#produtos" class="nav-link">Produtos</a>
+            <a href="#sobre" class="nav-link">Sobre</a>
+            <a href="#contato" class="nav-link">Contato</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Guto Overgrips</h1>
+            <p>Performance & Conforto em Cada Jogo</p>
+            <h2>Overgrips Premium para Beach Tennis</h2>
+            <p>Melhore seu desempenho com overgrips de alta qualidade.</p>
+            <a href="#produtos" class="btn btn-primary">Conheça Nossos Produtos</a>
+        </div>
+    </section>
+
+    <!-- Products 1nd Section -->
+    <section id="produtos" class="products">
+        <div class="container">
+            <h2 class="section-title">Nossos Overgrips Wilson</h2>
+            <h1>Custo Benefício</h1>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://i.imgur.com/7zHh5cJ.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Wilson Profile Overgrips 1 unidade</h3>
+                        <p>Aderência em todas as condições e excelente durabilidade.</p>
+                        <div class="product-price">R$ 19,99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769722528758-06261aea-21ce-49ad-b356-ec89f9fa3a85.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Wilson Profile Overgrips 3 unidades</h3>
+                        <p>Aderência em todas as condições e excelente durabilidade.</p>
+                        <div class="product-price">R$ 49,99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769722582141-8cf15a8b-1d30-4bbd-ad6a-7a30b6944112.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Wilson Profile Overgrips 12 unidades + brinde</h3>
+                        <p>Aderência em todas as condições e excelente durabilidade.</p>
+                        <div class="product-price">R$ 169,99</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products 2nd Section-->
+
+        <section id="produtos" class="products">
+        <div class="container">
+            <h2 class="section-title">Nossos Overgrips Head</h2>
+            <h1>Custo Benefício</h1>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769723602917-4752916b-7502-4382-8b16-9bf09e5b3603.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Head Overgrips Perfurados 1 unidade</h3>
+                        <p>Aderência em todas as condições, absorção de suor e boa durabilidade.</p>
+                        <div class="product-price">R$ 19,99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769723624826-a4aa3499-d431-4841-8ab9-e173cbfaba6b.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Head Overgrips Perfurados 3 unidades</h3>
+                        <p>Aderência em todas as condições, absorção de suor e boa durabilidade.</p>
+                        <div class="product-price">R$ 49,99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769723643013-6e62f3f2-7259-4302-9585-7e835e53dce7.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Head Overgrips Perfurados 12 unidades + brinde</h3>
+                        <p>Aderência em todas as condições, absorção de suor e boa durabilidade.</p>
+                        <div class="product-price">R$ 169,99</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Products 3nd Section-->
+
+        <section id="produtos" class="products">
+        <div class="container">
+            <h2 class="section-title">Nossos Overgrips Premium</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769724627931-aae998a2-da91-4be1-a1ff-fcbd636aa4d1.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Head Overgrips Perfurados 1 unidade</h3>
+                        <p>Aderência em todas as condições, absorção de suor e excelente durabilidade.</p>
+                        <div class="product-price">R$ 74,99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769724910998-d8f1879e-0529-4010-9944-f52bfad34a5c.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title"></h3>
+                        <p></p>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769724910998-d8f1879e-0529-4010-9944-f52bfad34a5c.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title"></h3>
+                        <p></p>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Acessories 4nd Section -->
+    <section id="produtos" class="products">
+        <div class="container">
+            <h2 class="section-title">Nossos Acessórios de Beach Tennis</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769725730939-e3856b34-be65-4786-ba93-529873741f1c.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Spidergrip + Brinde</h3>
+                        <p>Mais conforto na pegada.</p>
+                        <div class="product-price">R$ 79,99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769725681948-acb1c594-03cd-48c1-9768-147c690912d5.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Chaveiro</h3>
+                        <p>Bom para Raqueteiras, Mochilas e Chaves de Carros.</p>
+                        <div class="product-price">R$ 14,99</div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card slide-up">
+                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769724910998-d8f1879e-0529-4010-9944-f52bfad34a5c.jpeg');"></div>
+                    <div class="product-content">
+                        <h3 class="product-title"></h3>
+                        <p></p>
+                        <div class="product-price"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Sobre a Guto Overgrips</h2>
+                    <p></p>
+                    <p>Nossos overgrips são testados e aprovados.</p>
+                    <div>
+                        <span class="feature-box">✓ Material Durável</span>
+                        <span class="feature-box">✓ Conforto Superior</span>
+                        <span class="feature-box">✓ Absorção de Suor</span>
+                        <span class="feature-box">✓ Play Melhor com GutoOvergrips</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://image2url.com/r2/default/images/1769725904346-2c108e68-0cc5-409a-9f96-a9a9d33dfabf.jpg" alt="Jogador de beach tennis">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contato" class="cta">
+        <div class="container">
+            <h2>Pronto para Melhorar Seu Jogo?</h2>
+            <p>Experimente os overgrips e sinta a diferença em sua próxima partida.</p>
+            <div class="cta-buttons">
+                <a href="#produtos" class="btn btn-white">Ver Produtos</a>
+                <a href="https://wa.me/5594988129311" class="btn btn-whatsapp">Fale Conosco</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <h3 class="footer-logo">Guto Overgrips</h3>
+                    <p class="footer-description">
+                        Overgrips premium para beach tennis, proporcionando performance e conforto para jogadores de todos os níveis.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/guto_overgrips/" class="btn">
+                            <img src="https://image2url.com/r2/default/images/1769727063976-3bbe7294-3910-44a3-a845-1ccfbc9b1ca3.png" alt="Instagram">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Contato</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">📞 (94) 98812-9311</div>
+                        <div class="contact-item">📍 Itupiranga - Pará / Marabá - Pará</div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; <script>document.write(new Date().getFullYear())</script> Guto Overgrips. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <div class="whatsapp-toggle" onclick="document.querySelector('.whatsapp-info').style.display = document.querySelector('.whatsapp-info').style.display === 'block' ? 'none' : 'block'">
+            💬
+        </div>
+        <div class="whatsapp-info">
+            <h4>Guto Overgrips</h4>
+            <p>Entre em contato pelo WhatsApp</p>
+            <a href="https://wa.me/5594988129311" class="whatsapp-link">Enviar Mensagem</a>
+        </div>
+    </div>
+
+    <script>
+        // Simple mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Close WhatsApp info when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.whatsapp-float')) {
+                document.querySelector('.whatsapp-info').style.display = 'none';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
