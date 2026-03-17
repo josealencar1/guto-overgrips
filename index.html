@@ -1,828 +1,779 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guto Overgrips - Overgrips Premium para Beach Tennis</title>
+    <title>Guto Overgrips | Premium Beach Tennis</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        secondary: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                        },
+                        whatsapp: '#25D366'
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+        /* Custom Styles & Scroll Animations */
         body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            background: white;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-color: #f8fafc;
         }
-        
-        /* Navbar */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        /* Scroll Reveal Utility Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #3B82F6;
-            text-decoration: none;
-            background: linear-gradient(45deg, #3B82F6, #10B981);
-            -webkit-background-clip: text;
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 100ms; }
+        .reveal-delay-2 { transition-delay: 200ms; }
+        .reveal-delay-3 { transition-delay: 300ms; }
+
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Subtle Background Pattern for sections */
+        .bg-pattern {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        /* Gradient Text */
+        .text-gradient {
             background-clip: text;
-            color: transparent;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        
-        .nav-link {
-            color: #4B5563;
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-        }
-        
-        .nav-link:hover {
-            color: #3B82F6;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(45deg, #3B82F6, #10B981);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            position: relative;
-            overflow: hidden;
-            padding: 8rem 1rem;
-            text-align: center;
-            margin-top: 60px;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e5e7eb' fill-opacity='0.1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: repeat-x;
-            background-size: 1440px 320px;
-            animation: wave 15s linear infinite;
-            opacity: 0.3;
-        }
-        
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #3B82F6, #10B981, #F59E0B);
             -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(90deg, #3b82f6, #10b981);
         }
-        
-        .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-        
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            border-radius: 9999px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(45deg, #3B82F6, #10B981);
-            color: white;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: #3B82F6;
-            border: 2px solid #3B82F6;
-        }
-        
-        .btn-secondary:hover {
-            background: #3B82F6;
-            color: white;
-        }
-        
-        .btn-white {
-            background: white;
-            color: #3B82F6;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
-        }
-        
-        .btn-white:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
-        }
-        
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-whatsapp:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-        }
-        
-        /* Products Section */
-        .products {
-            padding: 5rem 1rem;
-            background: #f8fafc;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .product-image {
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .product-content {
-            padding: 1.5rem;
-        }
-        
-        .product-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-        
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #3B82F6;
-            margin: 1rem 0;
-        }
-        
-        /* About Section */
-        .about {
-            padding: 5rem 1rem;
-            position: relative;
-        }
-        
-        .about::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e5e7eb' fill-opacity='0.1' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: repeat-x;
-            background-size: 1440px 320px;
-            animation: wave 15s linear infinite;
-            opacity: 0.1;
-        }
-        
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            align-items: center;
-            position: relative;
-        }
-        
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .about-image img {
-            width: 100%;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-box {
-            background: rgba(59, 130, 246, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            display: inline-flex;
-            align-items: center;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        /* CTA Section */
-        .cta {
-            padding: 4rem 1rem;
-            background: linear-gradient(45deg, #3B82F6, #10B981);
-            color: white;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta p {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        /* Footer */
-        footer {
-            background: #111827;
-            color: #f3f4f6;
-            padding: 4rem 1rem;
-        }
-        
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, #3B82F6, #10B981);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .footer-description {
-            color: #9CA3AF;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #1F2937;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background: #3B82F6;
-            transform: translateY(-3px);
-        }
-        
-        .footer-heading {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-        
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        
-        .footer-link {
-            color: #9CA3AF;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-link:hover {
-            color: #3B82F6;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #9CA3AF;
-        }
-        
-        .copyright {
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid #1F2937;
-            text-align: center;
-            color: #9CA3AF;
-            font-size: 0.875rem;
-        }
-        
-        /* WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 100;
-        }
-        
-        .whatsapp-toggle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #25D366;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .whatsapp-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-        }
-        
-        .whatsapp-info {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            width: 250px;
+
+        /* Hide scrollbar for clean horizontal scrolls if needed */
+        .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
-        
-        .whatsapp-info h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #111827;
-        }
-        
-        .whatsapp-info p {
-            color: #6B7280;
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-        }
-        
-        .whatsapp-link {
-            display: block;
-            background: #25D366;
-            color: white;
-            text-align: center;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.3s ease;
-        }
-        
-        .whatsapp-link:hover {
-            background: #128C7E;
-        }
-        
-        /* Animations */
-        @keyframes wave {
-            0% { background-position-x: 0; }
-            100% { background-position-x: 1440px; }
-        }
-        
-        .slide-up {
-            animation: slideUp 0.8s ease-out;
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-                background: none;
-                border: none;
-                color: #4B5563;
-                font-size: 1.5rem;
-                cursor: pointer;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
     </style>
 </head>
-<body>
+<body class="text-slate-800 antialiased selection:bg-primary-500 selection:text-white">
+
     <!-- Navbar -->
-    <nav>
-        <a href="#" class="logo">Guto Overgrips</a>
-        <div class="nav-links">
-            <a href="#produtos" class="nav-link">Produtos</a>
-            <a href="#sobre" class="nav-link">Sobre</a>
-            <a href="#contato" class="nav-link">Contato</a>
+    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform">
+                        G
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-slate-900 group-hover:text-primary-600 transition-colors">
+                        Guto Overgrips
+                    </span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#wilson" class="font-medium text-slate-600 hover:text-primary-600 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary-500 after:transition-all hover:after:w-full">Wilson</a>
+                    <a href="#head" class="font-medium text-slate-600 hover:text-primary-600 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary-500 after:transition-all hover:after:w-full">Head</a>
+                    <a href="#premium" class="font-medium text-slate-600 hover:text-primary-600 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary-500 after:transition-all hover:after:w-full">Premium</a>
+                    <a href="#acessorios" class="font-medium text-slate-600 hover:text-primary-600 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary-500 after:transition-all hover:after:w-full">Acessórios</a>
+                    <a href="#sobre" class="font-medium text-slate-600 hover:text-primary-600 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary-500 after:transition-all hover:after:w-full">Sobre</a>
+                </div>
+
+                <!-- Contact Button (Desktop) -->
+                <div class="hidden md:flex">
+                    <a href="https://wa.me/5594988129311" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-xl flex items-center gap-2 hover:-translate-y-0.5">
+                        <i class="ph ph-whatsapp-logo text-xl text-whatsapp"></i>
+                        Contato
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-primary-600 focus:outline-none p-2">
+                    <i class="ph ph-list text-3xl"></i>
+                </button>
+            </div>
         </div>
-        <button class="mobile-menu-btn">☰</button>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white border-t border-slate-100 shadow-xl pb-6">
+            <div class="flex flex-col px-4 pt-2 space-y-3">
+                <a href="#wilson" class="mobile-link block px-4 py-3 text-slate-600 font-medium rounded-lg hover:bg-primary-50 hover:text-primary-600">Wilson</a>
+                <a href="#head" class="mobile-link block px-4 py-3 text-slate-600 font-medium rounded-lg hover:bg-primary-50 hover:text-primary-600">Head</a>
+                <a href="#premium" class="mobile-link block px-4 py-3 text-slate-600 font-medium rounded-lg hover:bg-primary-50 hover:text-primary-600">Premium</a>
+                <a href="#acessorios" class="mobile-link block px-4 py-3 text-slate-600 font-medium rounded-lg hover:bg-primary-50 hover:text-primary-600">Acessórios</a>
+                <a href="#sobre" class="mobile-link block px-4 py-3 text-slate-600 font-medium rounded-lg hover:bg-primary-50 hover:text-primary-600">Sobre</a>
+                <a href="https://wa.me/5594988129311" class="block px-4 py-3 mt-4 text-white font-medium rounded-lg bg-whatsapp text-center flex items-center justify-center gap-2 shadow-lg">
+                    <i class="ph ph-whatsapp-logo text-xl"></i> Falar no WhatsApp
+                </a>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Guto Overgrips</h1>
-            <p>Performance & Conforto em Cada Jogo</p>
-            <h2>Overgrips Premium para Beach Tennis</h2>
-            <p>Melhore seu desempenho com overgrips de alta qualidade.</p>
-            <a href="#produtos" class="btn btn-primary">Conheça Nossos Produtos</a>
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-900 text-white min-h-[90vh] flex items-center">
+        <!-- Abstract Background Effects -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary-600/30 blur-[120px] mix-blend-screen"></div>
+            <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-secondary-500/20 blur-[120px] mix-blend-screen"></div>
+            <!-- Dark Overlay Texture -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left flex flex-col lg:flex-row items-center gap-12">
+            
+            <div class="lg:w-1/2 reveal">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+                    Performance & <br/>
+                    <span class="text-gradient font-black">Conforto Extremo</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Eleve o seu jogo de Beach Tennis com overgrips premium. A aderência perfeita para cada batida, sem suar a mão.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#wilson" class="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white px-8 py-4 rounded-full font-bold text-lg shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_0_60px_-15px_rgba(59,130,246,0.7)] transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                        Ver Produtos <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                    <a href="https://wa.me/5594988129311" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-whatsapp-logo text-whatsapp"></i> Falar no Zap
+                    </a>
+                </div>
+                
+                <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-slate-400 text-sm font-medium">
+                    <div class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-secondary-500 text-xl"></i> Produtos Originais</div>
+                    <div class="flex items-center gap-2"><i class="ph-fill ph-lightning text-yellow-500 text-xl"></i> Envio Rápido</div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 relative reveal reveal-delay-2 hidden md:block">
+                <!-- Floating decorative images -->
+                <div class="relative w-full aspect-square max-w-[500px] mx-auto animate-float">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary-500 to-secondary-500 rounded-full blur-[80px] opacity-30"></div>
+                    <img src="https://image2url.com/r2/default/images/1770040611963-e5119938-94e3-4b9e-a442-0c78fa4ed856.jpg" alt="Beach Tennis Lifestyle" class="relative z-10 w-full h-full object-cover rounded-[3rem] border-4 border-white/10 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700">
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Products 1nd Section -->
-    <section id="produtos" class="products">
-        <div class="container">
-            <h2 class="section-title">Nossos Overgrips Wilson</h2>
-            <h1>Custo Benefício</h1>
-            <div class="product-grid">
+    <!-- Component: Product Generator (Used via Copy/Paste logic below) -->
+    <!-- Helper macro for URL encoding in WhatsApp links -->
+    
+    <!-- Section 1: Wilson -->
+    <section id="wilson" class="py-24 bg-pattern relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-primary-600 font-bold tracking-wider uppercase text-sm mb-2 block">Linha Custo-Benefício</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Overgrips <span class="text-gradient">Wilson</span></h2>
+                <p class="text-slate-600 text-lg">A escolha perfeita para quem busca o equilíbrio ideal entre durabilidade e preço acessível.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
                 <!-- Product 1 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('img/wilson-profile-1-overgrip.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Wilson Profile Overgrips 1 unidade</h3>
-                        <p>Aderência em todas as condições e excelente durabilidade.</p>
-                        <div class="product-price">R$ 19,99</div>
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(59,130,246,0.1)] transition-all duration-500 group reveal">
+                    <div class="relative h-72 overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+                        <img src="img/wilson-profile-1-overgrip.jpeg" onerror="this.src='https://image2url.com/r2/default/images/1769722528758-06261aea-21ce-49ad-b356-ec89f9fa3a85.jpeg'" alt="Wilson Profile 1" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-slate-900 mb-1 leading-tight group-hover:text-primary-600 transition-colors">Wilson Profile</h3>
+                                <p class="text-sm text-slate-500 font-medium">1 unidade</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-slate-900">R$ 19<span class="text-lg text-slate-500">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6 line-clamp-2">Aderência em todas as condições e excelente durabilidade para o seu jogo.</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20o%20Wilson%20Profile%201%20unidade%20%28R%24%2019%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-primary-600 text-white py-3.5 rounded-xl font-semibold transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
-                
+
                 <!-- Product 2 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769722528758-06261aea-21ce-49ad-b356-ec89f9fa3a85.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Wilson Profile Overgrips 3 unidades</h3>
-                        <p>Aderência em todas as condições e excelente durabilidade.</p>
-                        <div class="product-price">R$ 49,99</div>
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(59,130,246,0.1)] transition-all duration-500 group reveal reveal-delay-1 relative">
+                    <div class="relative h-72 overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+                        <img src="https://image2url.com/r2/default/images/1769722528758-06261aea-21ce-49ad-b356-ec89f9fa3a85.jpeg" alt="Wilson Profile 3" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-slate-900 mb-1 leading-tight group-hover:text-primary-600 transition-colors">Wilson Profile</h3>
+                                <p class="text-sm text-slate-500 font-medium">3 unidades</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-slate-900">R$ 49<span class="text-lg text-slate-500">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6 line-clamp-2">Pacote econômico. Aderência em todas as condições e excelente durabilidade.</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20o%20Wilson%20Profile%203%20unidades%20%28R%24%2049%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-primary-600 text-white py-3.5 rounded-xl font-semibold transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
-                
+
                 <!-- Product 3 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769722582141-8cf15a8b-1d30-4bbd-ad6a-7a30b6944112.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Wilson Profile Overgrips 12 unidades + brinde</h3>
-                        <p>Aderência em todas as condições e excelente durabilidade.</p>
-                        <div class="product-price">R$ 169,99</div>
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(59,130,246,0.1)] transition-all duration-500 group reveal reveal-delay-2">
+                    <div class="relative h-72 overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+                        <div class="absolute top-4 left-4 bg-secondary-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">+ Brinde Exclusivo</div>
+                        <img src="https://image2url.com/r2/default/images/1769722582141-8cf15a8b-1d30-4bbd-ad6a-7a30b6944112.jpeg" alt="Wilson Profile 12" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-slate-900 mb-1 leading-tight group-hover:text-primary-600 transition-colors">Wilson Profile</h3>
+                                <p class="text-sm text-slate-500 font-medium">Caixa 12 unidades</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-slate-900">R$ 169<span class="text-lg text-slate-500">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6 line-clamp-2">O melhor custo-benefício para quem joga frequentemente. Inclui brinde especial!</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20a%20Caixa%20Wilson%20Profile%2012%20unid%20%28R%24%20169%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white py-3.5 rounded-xl font-semibold shadow-lg transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Products 2nd Section-->
+    <!-- Section 2: Head -->
+    <section id="head" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-secondary-500 font-bold tracking-wider uppercase text-sm mb-2 block">Absorção Extra</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Overgrips <span class="text-gradient">Head</span></h2>
+                <p class="text-slate-600 text-lg">Modelos perfurados projetados para máxima absorção de suor e conforto térmico.</p>
+            </div>
 
-        <section id="produtos" class="products">
-        <div class="container">
-            <h2 class="section-title">Nossos Overgrips Head</h2>
-            <h1>Custo Benefício</h1>
-            <div class="product-grid">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
                 <!-- Product 1 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769723602917-4752916b-7502-4382-8b16-9bf09e5b3603.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Head Overgrips Perfurados 1 unidade</h3>
-                        <p>Aderência em todas as condições, absorção de suor e boa durabilidade.</p>
-                        <div class="product-price">R$ 19,99</div>
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(16,185,129,0.1)] transition-all duration-500 group reveal">
+                    <div class="relative h-72 overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+                        <img src="https://image2url.com/r2/default/images/1769723602917-4752916b-7502-4382-8b16-9bf09e5b3603.jpeg" alt="Head Perfurado 1" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-slate-900 mb-1 leading-tight group-hover:text-secondary-500 transition-colors">Head Perfurado</h3>
+                                <p class="text-sm text-slate-500 font-medium">1 unidade</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-slate-900">R$ 19<span class="text-lg text-slate-500">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6 line-clamp-2">Aderência em todas as condições, alta absorção de suor graças às perfurações.</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20o%20Head%20Perfurado%201%20unidade%20%28R%24%2019%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-secondary-500 text-white py-3.5 rounded-xl font-semibold transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
-                
+
                 <!-- Product 2 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769723624826-a4aa3499-d431-4841-8ab9-e173cbfaba6b.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Head Overgrips Perfurados 3 unidades</h3>
-                        <p>Aderência em todas as condições, absorção de suor e boa durabilidade.</p>
-                        <div class="product-price">R$ 49,99</div>
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(16,185,129,0.1)] transition-all duration-500 group reveal reveal-delay-1">
+                    <div class="relative h-72 overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+                        <img src="https://image2url.com/r2/default/images/1769723624826-a4aa3499-d431-4841-8ab9-e173cbfaba6b.jpeg" alt="Head Perfurado 3" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-slate-900 mb-1 leading-tight group-hover:text-secondary-500 transition-colors">Head Perfurado</h3>
+                                <p class="text-sm text-slate-500 font-medium">3 unidades</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-slate-900">R$ 49<span class="text-lg text-slate-500">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6 line-clamp-2">Pack com 3 unidades. Ideal para manter sua raquete sempre seca e firme na mão.</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20o%20Head%20Perfurado%203%20unidades%20%28R%24%2049%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-secondary-500 text-white py-3.5 rounded-xl font-semibold transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
-                
+
                 <!-- Product 3 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769723643013-6e62f3f2-7259-4302-9585-7e835e53dce7.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Head Overgrips Perfurados 12 unidades + brinde</h3>
-                        <p>Aderência em todas as condições, absorção de suor e boa durabilidade.</p>
-                        <div class="product-price">R$ 169,99</div>
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(16,185,129,0.1)] transition-all duration-500 group reveal reveal-delay-2">
+                    <div class="relative h-72 overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+                        <div class="absolute top-4 left-4 bg-primary-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">+ Brinde</div>
+                        <img src="https://image2url.com/r2/default/images/1769723643013-6e62f3f2-7259-4302-9585-7e835e53dce7.jpeg" alt="Head Perfurado 12" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-slate-900 mb-1 leading-tight group-hover:text-secondary-500 transition-colors">Head Perfurado</h3>
+                                <p class="text-sm text-slate-500 font-medium">Caixa 12 unidades</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-slate-900">R$ 169<span class="text-lg text-slate-500">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6 line-clamp-2">A melhor opção para treinadores e atletas frequentes. Acompanha um brinde exclusivo Guto Overgrips!</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20a%20Caixa%20Head%20Perfurado%2012%20unid%20%28R%24%20169%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-secondary-600 to-secondary-500 hover:from-secondary-500 hover:to-secondary-400 text-white py-3.5 rounded-xl font-semibold shadow-lg transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-        <!-- Products 3nd Section-->
+    <!-- Section 3: Premium -->
+    <section id="premium" class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-600/20 rounded-full blur-[100px] pointer-events-none"></div>
 
-        <section id="produtos" class="products">
-        <div class="container">
-            <h2 class="section-title">Nossos Overgrips Premium</h2>
-            <div class="product-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-yellow-400 font-bold tracking-wider uppercase text-sm mb-2 block flex items-center justify-center gap-2">
+                    <i class="ph-fill ph-crown text-lg"></i> Linha Pro
+                </span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Overgrips <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600">Premium</span></h2>
+                <p class="text-slate-400 text-lg">O máximo em aderência, sensibilidade e durabilidade. Usado pelos profissionais.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
                 <!-- Product 1 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769724627931-aae998a2-da91-4be1-a1ff-fcbd636aa4d1.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Wilson Pro Comfort 3 unidades</h3>
-                        <p>Aderência em todas as condições, absorção de suor e excelente durabilidade.</p>
-                        <div class="product-price">R$ 74,99</div>
+                <div class="bg-slate-800/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-700 hover:border-primary-500 transition-all duration-500 group reveal">
+                    <div class="relative h-72 overflow-hidden bg-white/5 flex items-center justify-center p-6">
+                        <img src="https://image2url.com/r2/default/images/1769724627931-aae998a2-da91-4be1-a1ff-fcbd636aa4d1.jpeg" alt="Wilson Pro Comfort" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 drop-shadow-2xl">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-white mb-1 leading-tight group-hover:text-primary-400 transition-colors">Wilson Pro Comfort</h3>
+                                <p class="text-sm text-slate-400 font-medium">3 unidades</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-white">R$ 74<span class="text-lg text-slate-400">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-6">Aderência em todas as condições, absorção de suor e excelente durabilidade.</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20o%20Wilson%20Pro%20Comfort%203%20unid%20%28R%24%2074%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-500 text-white py-3.5 rounded-xl font-semibold shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
-                
+
                 <!-- Product 2 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1771285298619-02b74c7d-5caa-427b-8951-c3201fd42e78.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Yonex Super Grap AC102 3 unidades</h3>
-                        <p>Aderência em todas as condições, absorção de suor e excelente durabilidade.</p>
-                        <div class="product-price">R$ 74,99</div>
+                <div class="bg-slate-800/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-700 hover:border-yellow-500 transition-all duration-500 group reveal reveal-delay-1">
+                    <div class="relative h-72 overflow-hidden bg-white/5 flex items-center justify-center p-6">
+                        <img src="https://image2url.com/r2/default/images/1771285298619-02b74c7d-5caa-427b-8951-c3201fd42e78.jpeg" alt="Yonex Super Grap" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 drop-shadow-2xl">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-white mb-1 leading-tight group-hover:text-yellow-400 transition-colors">Yonex Super Grap</h3>
+                                <p class="text-sm text-slate-400 font-medium">3 unidades (AC102)</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-white">R$ 74<span class="text-lg text-slate-400">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-6">Aderência em todas as condições, absorção de suor e excelente durabilidade.</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20o%20Yonex%20Super%20Grap%203%20unid%20%28R%24%2074%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-slate-900 py-3.5 rounded-xl font-bold shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.6)] transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769724910998-d8f1879e-0529-4010-9944-f52bfad34a5c.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title"></h3>
-                        <p></p>
-                        <div class="product-price"></div>
+
+                <!-- Product 3 (Em Breve) -->
+                <div class="bg-slate-800/50 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-700 transition-all duration-500 group reveal reveal-delay-2 flex flex-col items-center justify-center text-center p-8 min-h-[400px]">
+                    <div class="w-20 h-20 bg-slate-700/50 text-slate-400 rounded-full flex items-center justify-center mb-6">
+                        <i class="ph ph-clock text-4xl"></i>
                     </div>
+                    <h3 class="font-bold text-2xl text-white mb-2">Novidades em Breve</h3>
+                    <p class="text-slate-400 text-sm">Estamos buscando novos modelos premium para trazer para você.</p>
                 </div>
+
             </div>
         </div>
     </section>
 
-        <!-- Acessories 4nd Section -->
-    <section id="produtos" class="products">
-        <div class="container">
-            <h2 class="section-title">Nossos Acessórios de Beach Tennis</h2>
-            <div class="product-grid">
+    <!-- Section 4: Acessórios -->
+    <section id="acessorios" class="py-24 bg-pattern relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-primary-600 font-bold tracking-wider uppercase text-sm mb-2 block">Complemente seu Equipamento</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4"><span class="text-gradient">Acessórios</span> Exclusivos</h2>
+                <p class="text-slate-600 text-lg">Pequenos detalhes que fazem grande diferença na sua rotina no Beach Tennis.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
                 <!-- Product 1 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769725730939-e3856b34-be65-4786-ba93-529873741f1c.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Spidergrip + Brinde</h3>
-                        <p>Mais conforto na pegada.</p>
-                        <div class="product-price">R$ 79,99</div>
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(59,130,246,0.1)] transition-all duration-500 group reveal">
+                    <div class="relative h-72 overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+                        <div class="absolute top-4 left-4 bg-secondary-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Kit Especial</div>
+                        <img src="https://image2url.com/r2/default/images/1769725730939-e3856b34-be65-4786-ba93-529873741f1c.jpeg" alt="Spidergrip" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-slate-900 mb-1 leading-tight group-hover:text-primary-600 transition-colors">Spidergrip</h3>
+                                <p class="text-sm text-slate-500 font-medium">+ Brinde Exclusivo</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-slate-900">R$ 79<span class="text-lg text-slate-500">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6">Melhore a ergonomia e garanta mais conforto na pegada do cabo da sua raquete.</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20o%20Spidergrip%20%2B%20Brinde%20%28R%24%2079%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-primary-600 text-white py-3.5 rounded-xl font-semibold transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
-                
+
                 <!-- Product 2 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769725681948-acb1c594-03cd-48c1-9768-147c690912d5.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title">Chaveiro</h3>
-                        <p>Bom para Raqueteiras, Mochilas e Chaves de Carros.</p>
-                        <div class="product-price">R$ 14,99</div>
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_40px_rgb(59,130,246,0.1)] transition-all duration-500 group reveal reveal-delay-1">
+                    <div class="relative h-72 overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+                        <img src="https://image2url.com/r2/default/images/1769725681948-acb1c594-03cd-48c1-9768-147c690912d5.jpeg" alt="Chaveiro Beach Tennis" class="w-[60%] object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-slate-900 mb-1 leading-tight group-hover:text-primary-600 transition-colors">Chaveiro</h3>
+                                <p class="text-sm text-slate-500 font-medium">Chaveiro Estilizado</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-2xl font-black text-slate-900">R$ 14<span class="text-lg text-slate-500">,99</span></span>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6">Perfeito para enfeitar sua raqueteira, mochila ou chaves do carro com estilo único.</p>
+                        
+                        <a href="https://wa.me/5594988129311?text=Ol%C3%A1%2C%20gostaria%20de%20comprar%20o%20Chaveiro%20%28R%24%2014%2C99%29" target="_blank" 
+                           class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-primary-600 text-white py-3.5 rounded-xl font-semibold transition-all duration-300">
+                            <i class="ph-bold ph-shopping-cart-simple text-xl"></i> Comprar Agora
+                        </a>
                     </div>
                 </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card slide-up">
-                    <div class="product-image" style="background-image: url('https://image2url.com/r2/default/images/1769724910998-d8f1879e-0529-4010-9944-f52bfad34a5c.jpeg');"></div>
-                    <div class="product-content">
-                        <h3 class="product-title"></h3>
-                        <p></p>
-                        <div class="product-price"></div>
+
+                <!-- Product 3 (Em Breve) -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 group reveal reveal-delay-2 flex flex-col items-center justify-center text-center p-8 min-h-[400px]">
+                    <div class="w-20 h-20 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center mb-6">
+                        <i class="ph ph-hourglass-medium text-4xl"></i>
                     </div>
+                    <h3 class="font-bold text-2xl text-slate-900 mb-2">Mais Acessórios em Breve</h3>
+                    <p class="text-slate-600 text-sm">Fique de olho! Sempre trazemos novidades para complementar seu jogo.</p>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="sobre" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">Sobre a Guto Overgrips</h2>
-                    <p></p>
-                    <p>Nossos overgrips são testados e aprovados.</p>
-                    <div>
-                        <span class="feature-box">✓ Material Durável</span>
-                        <span class="feature-box">✓ Conforto Superior</span>
-                        <span class="feature-box">✓ Absorção de Suor</span>
-                        <span class="feature-box">✓ Play Melhor com GutoOvergrips</span>
+    <section id="sobre" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <div class="lg:w-1/2 reveal">
+                    <div class="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://image2url.com/r2/default/images/1770040611963-e5119938-94e3-4b9e-a442-0c78fa4ed856.jpg" alt="Equipe Guto Overgrips" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-8 left-8 right-8 text-white">
+                            <h3 class="text-2xl font-bold mb-2">Paixão pelo Esporte</h3>
+                            <p class="text-white/80 text-sm">Entregando qualidade para a galera de Itupiranga e Marabá.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="https://image2url.com/r2/default/images/1770040611963-e5119938-94e3-4b9e-a442-0c78fa4ed856.jpg">
+
+                <div class="lg:w-1/2 reveal reveal-delay-1">
+                    <h2 class="text-4xl font-extrabold text-slate-900 mb-6">A <span class="text-gradient">Guto Overgrips</span></h2>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                        
+                        <br><br>
+                        Nosso objetivo é facilitar o seu acesso a produtos originais e de alta qualidade, para que você nunca fique na mão na hora de ir para a quadra. Todos os itens são <strong class="text-slate-900">testados e aprovados</strong> antes de chegarem até você.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <div class="w-10 h-10 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center shrink-0">
+                                <i class="ph-bold ph-shield-check text-xl"></i>
+                            </div>
+                            <span class="font-semibold text-slate-800">Material Durável</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <div class="w-10 h-10 bg-secondary-100 text-secondary-600 rounded-lg flex items-center justify-center shrink-0">
+                                <i class="ph-bold ph-hand text-xl"></i>
+                            </div>
+                            <span class="font-semibold text-slate-800">Conforto Superior</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center shrink-0">
+                                <i class="ph-bold ph-drop text-xl"></i>
+                            </div>
+                            <span class="font-semibold text-slate-800">Absorção de Suor</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <div class="w-10 h-10 bg-yellow-100 text-yellow-600 rounded-lg flex items-center justify-center shrink-0">
+                                <i class="ph-bold ph-tennis-ball text-xl"></i>
+                            </div>
+                            <span class="font-semibold text-slate-800">Melhor Desempenho</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section id="contato" class="cta">
-        <div class="container">
-            <h2>Pronto para Melhorar Seu Jogo?</h2>
-            <p>Experimente os overgrips e sinta a diferença em sua próxima partida.</p>
-            <div class="cta-buttons">
-                <a href="#produtos" class="btn btn-white">Ver Produtos</a>
-                <a href="https://wa.me/5594988129311" class="btn btn-whatsapp">Fale Conosco</a>
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-600 to-secondary-500"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 text-white reveal">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Pronto para Melhorar Seu Jogo?</h2>
+            <p class="text-xl text-white/90 mb-10">Não deixe o suor atrapalhar seu ponto decisivo. Garanta já seu grip novo e sinta a diferença na próxima partida.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/5594988129311?text=Ol%C3%A1%21%20Quero%20melhorar%20meu%20jogo%2C%20poderia%20me%20mostrar%20as%20op%C3%A7%C3%B5es%20de%20overgrips%3F" target="_blank" 
+                   class="bg-white text-primary-600 hover:bg-slate-50 px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <i class="ph-bold ph-whatsapp-logo text-whatsapp text-2xl"></i> Fazer Pedido pelo Zap
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-about">
-                    <h3 class="footer-logo">Guto Overgrips</h3>
-                    <p class="footer-description">
-                        Overgrips premium para beach tennis, proporcionando performance e conforto para jogadores de todos os níveis.
+    <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                
+                <div class="md:col-span-5">
+                    <a href="#" class="flex items-center gap-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">G</div>
+                        <span class="font-bold text-2xl tracking-tight text-white">Guto Overgrips</span>
+                    </a>
+                    <p class="text-slate-400 mb-8 max-w-sm">
+                        Performance e conforto para jogadores de todos os níveis. Os melhores acessórios para Beach Tennis.
                     </p>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/guto_overgrips/" class="btn">
-                            <img src="https://image2url.com/r2/default/images/1769727063976-3bbe7294-3910-44a3-a845-1ccfbc9b1ca3.png" alt="Instagram">
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/guto_overgrips/" target="_blank" class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-primary-600 hover:border-primary-600 hover:text-white transition-all text-xl">
+                            <i class="ph-fill ph-instagram-logo"></i>
+                        </a>
+                        <a href="https://wa.me/5594988129311" target="_blank" class="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:bg-whatsapp hover:border-whatsapp hover:text-white transition-all text-xl">
+                            <i class="ph-fill ph-whatsapp-logo"></i>
                         </a>
                     </div>
                 </div>
-                
-                <div class="footer-contact">
-                    <h4 class="footer-heading">Contato</h4>
-                    <div class="contact-info">
-                        <div class="contact-item">📞 (94) 98812-9311</div>
-                        <div class="contact-item">📍 Itupiranga - Pará / Marabá - Pará</div>
-                    </div>
+
+                <div class="md:col-span-3">
+                    <h4 class="text-white font-semibold text-lg mb-6">Navegação</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#wilson" class="hover:text-primary-400 transition-colors">Linha Wilson</a></li>
+                        <li><a href="#head" class="hover:text-primary-400 transition-colors">Linha Head</a></li>
+                        <li><a href="#premium" class="hover:text-primary-400 transition-colors">Linha Premium</a></li>
+                        <li><a href="#acessorios" class="hover:text-primary-400 transition-colors">Acessórios</a></li>
+                    </ul>
                 </div>
+
+                <div class="md:col-span-4">
+                    <h4 class="text-white font-semibold text-lg mb-6">Contato & Localização</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-whatsapp-logo text-xl text-whatsapp shrink-0 mt-1"></i>
+                            <div>
+                                <span class="block text-white">(94) 98812-9311</span>
+                                <span class="text-sm">Atendimento via WhatsApp</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-map-pin text-xl text-primary-500 shrink-0 mt-1"></i>
+                            <div>
+                                <span class="block text-white">Entregas em Itupiranga & Marabá</span>
+                                <span class="text-sm">Estado do Pará, Brasil</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="copyright">
-                &copy; <script>document.write(new Date().getFullYear())</script> Guto Overgrips. Todos os direitos reservados.
+
+            <div class="border-t border-slate-800 mt-16 pt-8 text-center md:flex justify-between items-center text-sm">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Guto Overgrips. Todos os direitos reservados.</p>
+                <p class="mt-4 md:mt-0">Desenvolvido com foco em alta conversão.</p>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <div class="whatsapp-float">
-        <div class="whatsapp-toggle" onclick="document.querySelector('.whatsapp-info').style.display = document.querySelector('.whatsapp-info').style.display === 'block' ? 'none' : 'block'">
-            💬
+    <!-- Floating WhatsApp Button -->
+    <div class="fixed bottom-6 right-6 z-[100] group flex flex-col items-end">
+        
+        <!-- Info Toast (Shows on Hover/Click) -->
+        <div id="wa-toast" class="bg-white p-4 rounded-2xl shadow-2xl mb-4 w-64 transform translate-y-4 opacity-0 transition-all duration-300 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto border border-slate-100">
+            <h4 class="font-bold text-slate-900 mb-1">Dúvidas?</h4>
+            <p class="text-xs text-slate-500 mb-3">Chame a gente no WhatsApp para fechar seu pedido rapidinho!</p>
+            <a href="https://wa.me/5594988129311" target="_blank" class="block w-full text-center bg-whatsapp hover:bg-[#128C7E] text-white text-sm font-bold py-2 rounded-lg transition-colors">
+                Iniciar Conversa
+            </a>
         </div>
-        <div class="whatsapp-info">
-            <h4>Guto Overgrips</h4>
-            <p>Entre em contato pelo WhatsApp</p>
-            <a href="https://wa.me/5594988129311" class="whatsapp-link">Enviar Mensagem</a>
-        </div>
+
+        <!-- Button -->
+        <button id="wa-btn" class="w-16 h-16 bg-whatsapp rounded-full flex items-center justify-center text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_4px_25px_rgba(37,211,102,0.6)] hover:scale-110 transition-all duration-300 relative">
+            <i class="ph-fill ph-whatsapp-logo text-4xl"></i>
+            <!-- Notification dot -->
+            <span class="absolute top-0 right-0 w-4 h-4 bg-red-500 border-2 border-white rounded-full"></span>
+            <!-- Pulse ring -->
+            <span class="absolute inset-0 rounded-full border-2 border-whatsapp animate-pulse-slow"></span>
+        </button>
     </div>
 
+    <!-- Interactive Scripts -->
     <script>
-        // Simple mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const icon = menuBtn.querySelector('i');
 
-        // Close WhatsApp info when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.whatsapp-float')) {
-                document.querySelector('.whatsapp-info').style.display = 'none';
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            if(mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            } else {
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // WhatsApp Toast Toggle for Mobile
+        const waBtn = document.getElementById('wa-btn');
+        const waToast = document.getElementById('wa-toast');
+        
+        waBtn.addEventListener('click', (e) => {
+            // Se for mobile, simula o hover abrindo o balão antes de enviar direto
+            if(window.innerWidth < 768) {
+                if(waToast.style.opacity === '1') {
+                    window.open('https://wa.me/5594988129311', '_blank');
+                } else {
+                    waToast.style.opacity = '1';
+                    waToast.style.transform = 'translateY(0)';
+                    waToast.style.pointerEvents = 'auto';
+                }
+            } else {
+                window.open('https://wa.me/5594988129311', '_blank');
             }
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+        // Click outside to close waToast on mobile
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.group') && window.innerWidth < 768) {
+                waToast.style.opacity = '0';
+                waToast.style.transform = 'translateY(1rem)';
+                waToast.style.pointerEvents = 'none';
+            }
+        });
+
+        // Navbar Style on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md', 'py-0');
+            } else {
+                navbar.classList.remove('shadow-md', 'py-0');
+            }
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Opcional: Descomente a linha abaixo se quiser que a animação ocorra apenas uma vez
+                    // observer.unobserve(entry.target); 
                 }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
         });
     </script>
 </body>
-
 </html>
-
-
